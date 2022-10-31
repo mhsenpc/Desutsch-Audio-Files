@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="Desutsch_Audio_Files.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:Desutsch_Audio_Files.WinUI">
+
+</maui:MauiWinUIApplication>

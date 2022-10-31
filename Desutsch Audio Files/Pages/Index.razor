@@ -1,0 +1,19 @@
+﻿@page "/"
+@using Desutsch_Audio_Files.Data
+@inject WeatherForecastService ForecastService
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@foreach (var item in CourseProvider.GetCourses())
+{
+    @item.Name
+    <audio controls="controls" @bind-value="@item.Url"  autoplay="autoplay" />
+}
+
+@code{
+    public void play(){
+        ForecastService.Play();
+    }
+}
