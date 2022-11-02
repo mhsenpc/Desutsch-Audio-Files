@@ -50,7 +50,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Resources\01-اشخاص.mp3" />
+      <None Remove="Data\Course.cs~RF109cdb14.TMP" />
     </ItemGroup>
 
     <ItemGroup>

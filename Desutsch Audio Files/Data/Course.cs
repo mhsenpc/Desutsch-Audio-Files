@@ -8,13 +8,16 @@ namespace Desutsch_Audio_Files.Data
 {
     public class Course
     {
-        public Course(string name, string url)
+        public Course(string name, string url, int currentStage = 1)
         {
             Name = name;
             Url = url;
+            CurrentStage = currentStage;
         }
 
         public string Name { get; set; }
         public string Url { get; set; }
+
+        public int CurrentStage { get; set; }
     }
 }

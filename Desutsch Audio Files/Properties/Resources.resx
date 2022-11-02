@@ -117,14 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="01-اشخاص" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\01-اشخاص.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="02-خانواده" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\02-خانواده.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="03-آشناشدن" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\03-آشناشدن.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="a" xml:space="preserve">
+    <value>a</value>
   </data>
 </root>

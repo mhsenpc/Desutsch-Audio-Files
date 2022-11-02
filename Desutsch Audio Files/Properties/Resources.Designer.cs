@@ -61,32 +61,11 @@ namespace Desutsch_Audio_Files.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to a.
         /// </summary>
-        public static byte[] _01_اشخاص {
+        public static string a {
             get {
-                object obj = ResourceManager.GetObject("01-اشخاص", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] _02_خانواده {
-            get {
-                object obj = ResourceManager.GetObject("02-خانواده", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] _03_آشناشدن {
-            get {
-                object obj = ResourceManager.GetObject("03-آشناشدن", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("a", resourceCulture);
             }
         }
     }
