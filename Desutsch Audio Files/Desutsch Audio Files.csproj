@@ -54,8 +54,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Json.Net" Version="1.0.33" />
       <PackageReference Include="NAudio" Version="2.1.0" />
       <PackageReference Include="NAudio.Core" Version="2.1.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>

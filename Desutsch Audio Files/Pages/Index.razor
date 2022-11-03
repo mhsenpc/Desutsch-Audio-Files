@@ -4,26 +4,46 @@
 @inject CourseProvider courseProvider
 
 
-<span>selected stage is @selectedStage</span>
+
 @for (int i = 1; i <= stageSerivce.Count ;i++)
 {
-    <button @onclick="() => SwitchStage(i)">@i</button>
+    var local_i = i;
+    if(selectedStage == i){
+       <button @onclick="() => SwitchStage(local_i)">[@i]</button>
+    }
+    else{
+        <button @onclick="() => SwitchStage(local_i)">@i</button>
+    }
+ 
 }
 
 @foreach (var item in SelectedCourses)
 {
     <div>
         <span>@item.Name</span>
-        <a>@item.Url</a>
-        <span>@item.CurrentStage</span>
+        <audio controls="controls" src="@item.Url" onended="onended(item)" />
     </div>
 }
+debug is @debug
 
 @code{
     public int selectedStage { get; set; } = 1;
     public List<Course> SelectedCourses = new List<Course>();
+    public string debug;
+
+    protected override async Task OnInitializedAsync()
+    {
+        SwitchStage(1);
+    }
+
+    public void onEnd(Course course){
+        course.CurrentStage++;
+        courseProvider.SaveCourse(course);
+    }
+
 
     public void SwitchStage(int Stage){
+        debug = Stage.ToString();
         SelectedCourses.Clear();
         foreach (Course course in courseProvider.Courses)
         {

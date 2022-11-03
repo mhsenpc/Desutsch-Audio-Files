@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -16,41 +17,28 @@ namespace Desutsch_Audio_Files.Data
                 if (CoursesFromConfig == "")
                 {
                     var courses = InitialCourses();
-                    //Preferences.Set("course", ObjectToString(Courses));
+                    
+                    Preferences.Set("course", JsonConvert.SerializeObject(courses));
                     return courses;
                 }
                 else
                 {
                     //unserialize from config
-                    var courses = (List<Course>)StringToObject(CoursesFromConfig);
+                    var courses = (List<Course>)JsonConvert.DeserializeObject(CoursesFromConfig);
                     return courses;
 
                 }
             } 
         }
 
-
-
-
-        public string ObjectToString(object obj)
+        public void SaveCourse(Course NewCourse)
         {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                new BinaryFormatter().Serialize(ms, obj);
-                return Convert.ToBase64String(ms.ToArray());
-            }
+            int index = this.Courses.FindIndex(s => s.Url == NewCourse.Url);
+            if (index != -1)
+                this.Courses[index] = NewCourse;
         }
 
-        public object StringToObject(string base64String)
-        {
-            byte[] bytes = Convert.FromBase64String(base64String);
-            using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
-            {
-                ms.Write(bytes, 0, bytes.Length);
-                ms.Position = 0;
-                return new BinaryFormatter().Deserialize(ms);
-            }
-        }
+
 
 
         public List<Course> InitialCourses()
