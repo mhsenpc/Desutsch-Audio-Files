@@ -1,0 +1,34 @@
+﻿@page "/Setup"
+@using Desutsch_Audio_Files.Data
+@inject StageService stageSerivce
+@inject CourseProvider courseProvider
+@inject DeviceId deviceId
+
+<h3>Setup</h3>
+
+<label>Stages:</label>
+<input type="number" @bind-value="Stages" />
+<button @onclick="UpdateStages">Update</button>
+<br/>
+<button @onclick="InitCourses">Init Courses</button>
+
+<br/>
+Device id: @deviceId.ID
+<br/>
+<a href="/">Main</a>
+@code {
+    public int Stages { get; set; }
+
+    public void UpdateStages(){
+        stageSerivce.Count = Stages;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Stages = stageSerivce.Count;
+    }
+
+    public void InitCourses(){
+        courseProvider.SeedCourses();
+    }
+}

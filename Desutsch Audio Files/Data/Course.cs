@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,11 @@ namespace Desutsch_Audio_Files.Data
         public string Url { get; set; }
 
         public int CurrentStage { get; set; }
+
+        public bool _ { get; set; } = true;
+
+        public ObjectId _id { get; set; }
+
+        public string DeviceId;
     }
 }

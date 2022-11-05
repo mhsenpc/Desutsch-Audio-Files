@@ -1,4 +1,5 @@
 ﻿@page "/"
+@layout MainLayout
 @using Desutsch_Audio_Files.Data
 @inject StageService stageSerivce
 @inject CourseProvider courseProvider
@@ -17,40 +18,46 @@
  
 }
 
-@foreach (var item in SelectedCourses)
+@foreach (var course in courses)
 {
-    <div>
-        <span>@item.Name</span>
-        <audio controls="controls" src="@item.Url" onended="onended(item)" />
-    </div>
+    @if(course.CurrentStage == selectedStage){
+        <div style="border-style:solid;border-width:1px;">
+            <button @onclick="() => DowngradeCourse(course)">&lt;</button>
+            <span>@course.Name</span>
+            <audio controls="controls" src="@course.Url" @onended="() => onEnd(course)" />
+            <button @onclick="() => UpgradeCourse(course)">&gt;</button>
+        </div>
+    }
 }
-debug is @debug
 
 @code{
     public int selectedStage { get; set; } = 1;
-    public List<Course> SelectedCourses = new List<Course>();
+    public List<Course> courses = new List<Course>();
     public string debug;
 
     protected override async Task OnInitializedAsync()
     {
-        SwitchStage(1);
+         this.courses = courseProvider.GetCourses();
+         SwitchStage(1);
     }
 
     public void onEnd(Course course){
+        UpgradeCourse(course);
+    }
+
+    public void UpgradeCourse(Course course){
         course.CurrentStage++;
-        courseProvider.SaveCourse(course);
+        courseProvider.UpdateCourse(course);
+    }
+
+    public void DowngradeCourse(Course course)
+    {
+        course.CurrentStage--;
+        courseProvider.UpdateCourse(course);
     }
 
 
-    public void SwitchStage(int Stage){
-        debug = Stage.ToString();
-        SelectedCourses.Clear();
-        foreach (Course course in courseProvider.Courses)
-        {
-            if (course.CurrentStage == Stage )
-            {
-                SelectedCourses.Add(course);
-            }
-        } 
+    public void SwitchStage(int stage){
+        selectedStage = stage;
     }
 }

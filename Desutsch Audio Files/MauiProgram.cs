@@ -22,6 +22,7 @@ public static class MauiProgram
 		
 		builder.Services.AddSingleton<StageService>();
 		builder.Services.AddSingleton<CourseProvider>();
+		builder.Services.AddSingleton<DeviceId>();
 
 		return builder.Build();
 	}
