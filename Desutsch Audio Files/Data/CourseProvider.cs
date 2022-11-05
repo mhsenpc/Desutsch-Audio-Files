@@ -16,9 +16,8 @@ namespace Desutsch_Audio_Files.Data
     {
         public List<Course> GetCourses() {
             var db = new DatabaseProvider();
-            string deviceId = (new DeviceId()).ID;
             var courses = db.GetCourses();
-            return courses.FindAll(x => x.DeviceId == deviceId);
+            return courses;
         }
 
         public void UpdateCourse(Course course)
@@ -130,9 +129,6 @@ namespace Desutsch_Audio_Files.Data
             courses.Add(new Course("‫ضمائر ملکی ۲","https://dl.charbzaban.com/nosrat/german/german%28www.Charbzaban.com%29%20%2867%29.mp3"));
             courses.Add(new Course("‫در قطار","https://dl.charbzaban.com/nosrat/german/german%28www.Charbzaban.com%29%20%2834%29.mp3"));
             courses.Add(new Course("‫بزرگ –کوچک","https://dl.charbzaban.com/nosrat/german/german%28www.Charbzaban.com%29%20%2868%29.mp3"));
-
-            DeviceId deviceId = new DeviceId();
-            courses.ForEach(x => x.DeviceId = deviceId.ID);
 
             var db = new DatabaseProvider();
             db.StoreMany(courses);
