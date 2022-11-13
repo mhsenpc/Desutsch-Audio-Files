@@ -17,6 +17,8 @@ namespace Desutsch_Audio_Files.Data
             Index = index;
         }
 
+        public bool PlayerLoaded { get; set; } = false;
+
         public string Name { get; set; }
         public string Url { get; set; }
         public int Index { get; }

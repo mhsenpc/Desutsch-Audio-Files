@@ -9,27 +9,47 @@
 @for (int i = 1; i <= stageSerivce.Count ;i++)
 {
     var local_i = i;
-    if(selectedStage == i){
-       <button @onclick="() => SwitchStage(local_i)">[@i]</button>
+    string text = local_i.ToString();
+
+    text += "(" + GetStageCount(i).ToString() + ")";
+    if (selectedStage == local_i)
+    {
+        text = "[" + text.ToString() + "]";
     }
-    else{
-        <button @onclick="() => SwitchStage(local_i)">@i</button>
-    }
- 
+    
+    <button class="stage-button" @onclick="() => SwitchStage(local_i)">@text</button>
 }
 
 @foreach (var course in courses)
 {
     @if(course.CurrentStage == selectedStage){
-        <div style="border-style:solid;border-width:1px;">
-            <button @onclick="() => DowngradeCourse(course)">&lt;</button>
-            <span>@course.Name</span>
-            <audio controls="controls" src="@course.Url" @onended="() => onEnd(course)" />
-            <button @onclick="() => UpgradeCourse(course)">&gt;</button>
+        <div class="course-item">
             <span>@course.Index</span>
+            <br/>
+            <span>@course.Name</span>
+            <br/>
+
+            <button @onclick="() => DowngradeCourse(course)">&lt;</button>
+            <button @onclick="() => course.PlayerLoaded = !course.PlayerLoaded">Load</button>
+            <button @onclick="() => UpgradeCourse(course)">&gt;</button>
+
+            @if(course.PlayerLoaded){
+                <audio controls="controls" src="@course.Url" @onended="() => onEnd(course)" />
+            }
         </div>
     }
 }
+<style>
+    .stage-button{
+        margin:10px;
+    }
+
+    .course-item{
+        border-style: solid;
+        border-width: 1px;
+        margin-bottom:20px;
+    }
+</style>
 
 @code{
     public int selectedStage { get; set; } = 1;
@@ -57,5 +77,9 @@
 
     public void SwitchStage(int stage){
         selectedStage = stage;
+    }
+
+    public int GetStageCount(int stage){
+        return courses.Count(n => n.CurrentStage == stage);
     }
 }
