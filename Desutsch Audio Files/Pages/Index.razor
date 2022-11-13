@@ -26,6 +26,7 @@
             <span>@course.Name</span>
             <audio controls="controls" src="@course.Url" @onended="() => onEnd(course)" />
             <button @onclick="() => UpgradeCourse(course)">&gt;</button>
+            <span>@course.Index</span>
         </div>
     }
 }
@@ -33,7 +34,6 @@
 @code{
     public int selectedStage { get; set; } = 1;
     public List<Course> courses = new List<Course>();
-    public string debug;
 
     protected override async Task OnInitializedAsync()
     {
@@ -47,13 +47,11 @@
 
     public void UpgradeCourse(Course course){
         course.CurrentStage++;
-        courseProvider.UpdateCourse(course);
     }
 
     public void DowngradeCourse(Course course)
     {
         course.CurrentStage--;
-        courseProvider.UpdateCourse(course);
     }
 
 

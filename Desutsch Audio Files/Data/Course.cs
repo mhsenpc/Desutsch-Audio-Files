@@ -9,16 +9,27 @@ namespace Desutsch_Audio_Files.Data
 {
     public class Course
     {
-        public Course(string name, string url, int currentStage = 1)
+
+        public Course(string name, string url, int index)
         {
             Name = name;
             Url = url;
-            CurrentStage = currentStage;
+            Index = index;
         }
 
         public string Name { get; set; }
         public string Url { get; set; }
+        public int Index { get; }
 
-        public int CurrentStage { get; set; }
+        public int CurrentStage {
+            get
+            {
+                return Preferences.Get(Name, 1);
+            }
+            set
+            {
+                Preferences.Set(Name, value);
+            }
+        }
     }
 }

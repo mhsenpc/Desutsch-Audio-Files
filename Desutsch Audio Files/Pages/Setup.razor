@@ -9,8 +9,6 @@
 <input type="number" @bind-value="Stages" />
 <button @onclick="UpdateStages">Update</button>
 <br/>
-<button @onclick="InitCourses">Init Courses</button>
-<br/>
 <a href="/">Main</a>
 @code {
     public int Stages { get; set; }
@@ -24,7 +22,4 @@
         Stages = stageSerivce.Count;
     }
 
-    public void InitCourses(){
-        courseProvider.SeedCourses();
-    }
 }
